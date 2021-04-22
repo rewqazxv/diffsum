@@ -65,21 +65,16 @@ if __name__ == '__main__':
 
 
     def print_paths(title, paths):
-        tab = 2
-        leading = ' ' * tab
+        tab = ' ' * 2
+        paths = sorted(paths)
         if paths:
             print(title + ':')
-            if isinstance(paths, set):
-                for i in sorted(paths):
-                    print(leading, i, sep='')
-            elif isinstance(paths, dict):
-                for k in paths:
-                    v = paths[k]
-                    print(leading, k + ' -> ' + v, sep='')
+            for i in paths:
+                print(tab, i, sep='')
 
 
     print_paths('change', change)
     print_paths('remove', remove)
-    print_paths('move', move)
+    print_paths('move', ('{} -> {}'.format(*i) for i in move.items()))
     print_paths('add', add)
     # print_paths('common', common)
